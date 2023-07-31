@@ -1,0 +1,53 @@
+
+================== ASTRAL-Pro ===================== 
+
+This is ASTRAL-Pro (A-Pro) version 1.1.3
+Using native AVX batch computing.
+Gene trees are treated as unrooted
+There are 4 threads used to run.
+The number of input tree read is 20
+312 trees read from ./astral_input/simphy_D2L2C1_G20_gene.newick
+30 extra trees.
+All output trees will be *arbitrarily* rooted at N
+
+======== Running the main analysis
+Number of taxa: 16 (16 species)
+Taxa: [N, O, P, M, L, J, K, F, C, A, B, D, E, I, H, G]
+Taxon occupancy: {A=270, B=286, C=286, D=286, E=264, F=200, G=248, H=216, I=216, J=236, K=220, L=200, M=200, N=224, O=264, P=244}
+Using polytree-based weight calculation.
+Number of gene trees: 312
+290 trees have missing taxa
+Calculating distance matrix (for completion of X) ....with 4 distance matrices in parallel
+Species tree distances calculated ...
+
+Will attempt to complete bipartitions from X before adding using a distance matrix.
+Building set of clusters (X) from gene trees 
+------------------------------
+Number of Clusters after addition by distance: 59
+Adding to X using resolutions of greedy consensus ...
+
+Computing greedy consensus  took 0 seconds
+Limit for sigma of degrees:450
+
+polytomy size limit : > 3
+ []
+discarded polytomies: 
+Threshold 0.0:
+Threshold 0.01:
+Threshold 0.02:
+Threshold 0.05:
+Threshold 0.1:
+Threshold 0.2:
+Threshold 0.3333333333333333:
+Number of Clusters after addition by greedy: 59
+calculating extra bipartitions from extra input trees ...
+Number of Clusters after additions from extra trees: 59
+partitions formed in 0.18 secs
+Dynamic Programming starting after 0.18 secs
+Polytree max score: 18199
+Polytree building time: 0.165 seconds.
+Number of quartet trees in the gene trees: 18199
+Computing hash values took 0 seconds
+Size of largest cluster: 16
+Total Number of elements: 14
+Final optimization score: 0

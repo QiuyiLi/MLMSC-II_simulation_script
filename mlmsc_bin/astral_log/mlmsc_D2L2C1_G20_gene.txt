@@ -1,0 +1,12 @@
+
+================== ASTRAL-Pro ===================== 
+
+This is ASTRAL-Pro (A-Pro) version 1.1.3
+Using native AVX batch computing.
+Gene trees are treated as unrooted
+There are 4 threads used to run.
+The number of input tree read is 20
+308 trees read from ./astral_input/mlmsc_D2L2C1_G20_gene.newick
+31 extra trees.
+Scoring ./species_trees/fungi.newick
+Scoring: 1 trees
