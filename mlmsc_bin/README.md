@@ -12,7 +12,7 @@ or
 python3 script_mlmsc_fungi.py --name N100D2L2C9
 ```
 the arguments 
-* N100: simulation 100 gene trees.
+* N100: simulate 100 gene trees.
 * D2: duplication rate = 2e-3 per coalescent unit.
 * L2: loss rate = 2e-3 per coalescent unit.
 * C9: the effective population size = 9e7.
