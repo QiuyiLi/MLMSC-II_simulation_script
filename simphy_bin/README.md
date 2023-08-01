@@ -4,9 +4,11 @@ We provide the scripts to reproduce the simulation results of the paper **The ef
 
 ## process_simphy_fungi.py
 This script processes the origial output of Simphy and makes the output format consistent with the output of MLMSC-II. 
+
 * gene_tree.newick: a multi-labelled gene tree consisting of all homologous genes.
 * random_tree.newick: a single-labelled gene tree in which only one gene is randomly selected for each descendant species.
 * summary.txt: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species).
+
 The script has been integrated to **script_simphy_fungi.py**, and do not need to be executed on its own. 
 
 ## script_simphy_fungi.py
