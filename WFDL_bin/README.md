@@ -1,6 +1,6 @@
 # Wright-Firsher with Duplication and Loss
 
-This python3 code simulates the allele frequency according to the WFDL (Wright-Firsher with Duplication and Loss) model. Note that this code does not produce any gene trees, which requires too much memory/runing time to track the genealogy of every individual in the whole population. It only simulates the allele frequency and thereafter the fraction of higher-order duplications, which is ignored in the [MLMSC-II model](https://github.com/QiuyiLi/MLMSC-II). For more details, please refer to our paper **The Effect of Copy Number Hemiplasy on Gene**.
+This python3 code simulates the allele frequency according to the WFDL (Wright-Firsher with Duplication and Loss) model. Note that this code does not produce any gene trees, which requires too much memory/runing time to track the genealogy of every individual in the whole population. It only simulates the allele frequency and thereafter the fraction of higher-order duplications, which is ignored in the [MLMSC-II model](https://github.com/QiuyiLi/MLMSC-II). For more details, please refer to our paper **The Effect of Copy Number Hemiplasy on Gene Family Evolution**.
 
 ##  Usage
 The users will need to open WFDL.py and manually change the arguments listed on top of the code:
