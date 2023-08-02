@@ -32,11 +32,11 @@ This script is for submitting jobs on clusters and lists all sets of parameters 
 ## script_astral_simphy_fungi.py
 This script takes input the duplication rate, loss rate, the effective population size and produces the output of ASTRAL/ASTRAL-Pro. To execute
 ```
-python3 script_astral_simphy_fungi.py -n D2L2C9_G20_gene
+python3 script_astral_simphy_fungi.py -n simphy_D2L2C9_G20_gene
 ```
 or
 ```
-python3 script_astral_simphy_fungi.py --name D2L2C9_G20_gene
+python3 script_astral_simphy_fungi.py --name simphy_D2L2C9_G20_gene
 ```
 the arguments 
 * D2: duplication rate = 2e-3 per coalescent unit.
