@@ -39,8 +39,8 @@ For more information, please refer to **WFDL_bin/README.md**.
 This directory stores all simulation results and R scripts for data analysis and plots.
 
 The simulated gene trees are stored in the following directories:
-* data_analysis/mlmsc_tree: gene trees simulated using MLMSC-II
-* data_analysis/symphy_tree: gene trees simulated using SimPhy
+* **data_analysis/mlmsc_tree**: gene trees simulated using MLMSC-II
+* **data_analysis/symphy_tree**: gene trees simulated using SimPhy
   
 Note that we only keep 1000 gene trees for each set of parameters for demonstration, but 100000 gene trees are used in the original simulation.
 
