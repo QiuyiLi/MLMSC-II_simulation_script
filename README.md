@@ -14,7 +14,7 @@ Output species tree inference results are stored in mlmsc_bin/astral_summary_fun
 * mlmsc_random.txt: ASTRAL results
 * mlmsc_gene.txt: ASTRAL-Pro results
 
-For more information, please refer to *mlmsc_bin/README.md*.
+For more information, please refer to **mlmsc_bin/README.md**.
 
 ## simphy_bin
 This directory is for simulating gene trees using SimPhy, and performing species tree inference (by ASTRAL and ASTRAL-Pro) on the simulated gene tree.
@@ -28,12 +28,12 @@ Output species tree inference results are stored in simphy_bin/astral_summary_fu
 * simphy_random.txt: ASTRAL results
 * simphy_gene.txt: ASTRAL-Pro results
 
-For more information, please refer to *simphy_bin/README.md*.
+For more information, please refer to **simphy_bin/README.md**.
 
 ## WFDL_bin
 This directory is for simulating the fraction of higher order duplications using the WFDL model.
 
-For more information, please refer to *WFDL_bin/README.md*.
+For more information, please refer to **WFDL_bin/README.md**.
 
 ## data_analysis
 This directory stores all simulation results and R scripts for data analysis and plots.
@@ -52,4 +52,4 @@ The results of species tree inference are stored in the following directories:
 * data_analysis/astral_mlmsc: results of species tree inference using gene trees simulated using MLMSC-II
 * data_analysis/astral_symphy: results of species tree inference using gene trees simulated using SimPhy
 
-For more information, please refer to *data_analysis/README.md*.
+For more information, please refer to **data_analysis/README.md**.
