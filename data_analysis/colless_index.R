@@ -1,7 +1,12 @@
 library(ape)
 library(treeCentrality)
 
-dir = '/Users/qiuyi_li/Desktop/simulation_script/data_analysis/'
+"""
+Set the working directory to 'data_analysis',
+or change dir to the full directory to 'data_analysis', 
+such as dir = '~/desktop/simulation_script/data_analysis/'
+"""
+dir = './'
 
 files_dir = paste(dir, 'simphy_tree/gene/', sep='')
 files = list.files(files_dir)

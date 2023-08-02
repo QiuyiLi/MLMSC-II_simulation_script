@@ -1,8 +1,12 @@
 library(readr)
 library(ggplot2)
 
-# change to user's own directory
-dir = '/Users/qiuyi_li/Desktop/simulation_script/data_analysis/'
+"""
+Set the working directory to 'data_analysis',
+or change dir to the full directory to 'data_analysis', 
+such as dir = '~/desktop/simulation_script/data_analysis/'
+"""
+dir = './'
 
 files_dir = paste(dir, 'astral_simphy/random/', sep='')
 files = list.files(files_dir)
