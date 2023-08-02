@@ -2,4 +2,47 @@
  
 We provide the scripts to reproduce the simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. Here we only give the example of the species tree of 16 fungal genomes i.e., the result presented in the main text of the paper. Minor changes to the python scripts is required to reproduce the examples of primate species tree, or the artificial species tree with extremely short internal branches. 
 
-For more details, please refer to the README.md file in each individual directory.
+## mlmsc_bin
+This directory is for simulating gene trees using MLMSC-II, and performing species tree inference (by ASTRAL and ASTRAL-Pro) on the simulated gene tree.
+
+Output gene trees are stored in mlmsc_bin/output:
+* gene_tree.newick: a multi-labelled gene tree consisting of all homologous genes
+* random_tree.newick: a single-labelled gene tree in which only one gene is randomly selected for each descendant species 
+* summary.txt: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species)
+
+Output species tree inference results are stored in mlmsc_bin/astral_summary_fungi:
+* mlmsc_random.txt: ASTRAL results
+* mlmsc_gene.txt: ASTRAL-Pro results
+
+## simphy_bin
+This directory is for simulating gene trees using SimPhy, and performing species tree inference (by ASTRAL and ASTRAL-Pro) on the simulated gene tree.
+
+Output gene trees are stored in simphy_bin/output:
+* gene_tree.newick: a multi-labelled gene tree consisting of all homologous genes
+* random_tree.newick: a single-labelled gene tree in which only one gene is randomly selected for each descendant species 
+* summary.txt: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species)
+
+Output species tree inference results are stored in simphy_bin/astral_summary_fungi:
+* mlmsc_random.txt: ASTRAL results
+* mlmsc_gene.txt: ASTRAL-Pro results
+
+## WFDL_bin
+This directory is for simulating higher order duplications using the WFDL model.
+
+## data_analysis
+This directory stores all simulation results and R scripts for data analysis and plots.
+
+The simulated gene trees are stored in the following directories:
+* data_analysis/mlmsc_tree: gene trees simulated using MLMSC-II
+* data_analysis/symphy_tree: gene trees simulated using SimPhy
+
+The bacis summary statistics of the simulated gene trees (e.g., n_dups, n_genes, n_species) are stored in the following directories:
+* data_analysis/mlmsc_summary: bacis summary statistics of the gene trees simulated using MLMSC-II
+* data_analysis/symphy_summary: bacis summary statistics of the gene trees simulated using SimPhy
+
+The results of species tree inference are stored in the following directories:
+* data_analysis/astral_mlmsc: results of species tree inference using gene trees simulated using MLMSC-II
+* data_analysis/astral_symphy: results of species tree inference using gene trees simulated using SimPhy
+
+## More info
+There is a README.md file in each individual directory (mlmsc_bin, simphy_bin, WFDL_bin, data_analysis). Please refer to them for more information.
