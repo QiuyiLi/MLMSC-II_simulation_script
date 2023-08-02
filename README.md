@@ -35,6 +35,7 @@ This directory stores all simulation results and R scripts for data analysis and
 The simulated gene trees are stored in the following directories:
 * data_analysis/mlmsc_tree: gene trees simulated using MLMSC-II
 * data_analysis/symphy_tree: gene trees simulated using SimPhy
+Note that we only keep 1000 gene trees for each set of parameters for demonstration, but 100000 gene trees are used in the original simulation.
 
 The bacis summary statistics of the simulated gene trees (e.g., n_dups, n_genes, n_species) are stored in the following directories:
 * data_analysis/mlmsc_summary: bacis summary statistics of the gene trees simulated using MLMSC-II
