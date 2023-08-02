@@ -1,11 +1,9 @@
 library(readr)
 library(ggplot2)
 
-"""
-Set the working directory to 'data_analysis',
-or define dir as the full directory to 'data_analysis', 
-such as dir = '~/desktop/simulation_script/data_analysis/'
-"""
+# Set the working directory to 'data_analysis',
+# or define dir as the full directory to 'data_analysis', 
+# such as dir = '~/desktop/simulation_script/data_analysis/'
 dir = './'
 
 files_dir = paste(dir, 'astral_simphy/gene/', sep='')
