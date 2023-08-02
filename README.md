@@ -23,8 +23,8 @@ Output gene trees are stored in simphy_bin/output:
 * summary.txt: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species)
 
 Output species tree inference results are stored in simphy_bin/astral_summary_fungi:
-* mlmsc_random.txt: ASTRAL results
-* mlmsc_gene.txt: ASTRAL-Pro results
+* simphy_random.txt: ASTRAL results
+* simphy_gene.txt: ASTRAL-Pro results
 
 ## WFDL_bin
 This directory is for simulating higher order duplications using the WFDL model.
