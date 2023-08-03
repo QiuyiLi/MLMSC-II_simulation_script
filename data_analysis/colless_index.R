@@ -4,8 +4,9 @@ library(treeCentrality)
 # Set the working directory to 'data_analysis',
 # or define dir as the full directory to 'data_analysis', 
 # such as dir = '~/desktop/simulation_script/data_analysis/'
-dir = './'
 
+### load simphy trees ###
+dir = './'
 files_dir = paste(dir, 'simphy_tree/gene/', sep='')
 files = list.files(files_dir)
 
@@ -45,7 +46,7 @@ for (i in 1:length(files)){
 simphy_gene = summary_data
 simphy_gene$model = 'DLCoal'
 
-#######################################################################################
+### load mlmsc trees ###
 files_dir = paste(dir, 'mlmsc_tree/gene/', sep='')
 files = list.files(files_dir)
 
@@ -85,13 +86,14 @@ for (i in 1:length(files)){
 mlmsc_gene = summary_data
 mlmsc_gene$model = 'MLMSC-II'
 
-#######################################################################################
+### combine/select data ###
 combined_data = rbind(mlmsc_gene, simphy_gene)
 summary_dir = paste(dir, 'summary_colless_gene.csv', sep='')
 
 write.csv(combined_data, summary_dir, row.names = FALSE)
 combined_data = read_csv(summary_dir)
 
+### plot summary data with x = event rates ###
 ggplot(combined_data, aes(r_d, colless, color=factor(coal_unit), linetype=model)) +
   geom_errorbar(
     aes(ymin = colless-std_colless, ymax = colless+std_colless, color = factor(coal_unit)), width = 0.3) + 
@@ -104,7 +106,7 @@ ggplot(combined_data, aes(r_d, colless, color=factor(coal_unit), linetype=model)
          linetype=guide_legend(title="models")) + 
   theme_minimal()
 
-#######################################################################################
+### plot summary data with x = number of duplications ###
 basic_summary_dir = paste(dir, 'summary_data.csv', sep='')
 basic_summary_df = read_csv(basic_summary_dir)
 
@@ -129,8 +131,7 @@ ggplot(combined_summary_df, aes(n_dups, colless, color=factor(coal_unit), linety
          linetype=guide_legend(title="models")) + 
   theme_minimal()
 
-#######################################################################################
-
+### plot density ###
 simphy_D4L4C9 = readLines(paste(dir, 'simphy_tree/gene/gene_tree_D4L4C9.newick', sep=''), n=1000)
 mlmsc_D4L4C9 = readLines(paste(dir, 'mlmsc_tree/gene/gene_tree_D4L4C9.newick', sep=''), n=1000)
 

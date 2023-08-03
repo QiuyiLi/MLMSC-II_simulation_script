@@ -4,8 +4,9 @@ library(ggplot2)
 # Set the working directory to 'data_analysis',
 # or define dir as the full directory to 'data_analysis', 
 # such as dir = '~/desktop/simulation_script/data_analysis/'
-dir = './'
 
+### load simphy data ###
+dir = './'
 files_dir = paste(dir, 'astral_simphy/random/', sep='')
 files = list.files(files_dir)
 
@@ -53,7 +54,7 @@ for (i in 1:length(files)){
 simphy_random = summary_data
 simphy_random$model = 'DLCoal'
 
-#######################################################################################
+### load mlmsc data ###
 files_dir = paste(dir, 'astral_mlmsc/random/', sep='')
 files = list.files(files_dir)
 
@@ -101,8 +102,7 @@ for (i in 1:length(files)){
 mlmsc_random = summary_data
 mlmsc_random$model = 'MLMSC-II'
 
-#######################################################################################
-
+### combine/select data ###
 combined_data = rbind(mlmsc_random, simphy_random)
 summary_dir = paste(dir, 'summary_rf_random.csv', sep='')
 
@@ -116,6 +116,7 @@ sub_combined_data = combined_data[which(combined_data$r_l==1),]
 # only look at the cases where rd=0.5*rl, rd=rl, rd=2*rl
 sub_combined_data = combined_data[which(combined_data$r_l==0.5 | combined_data$r_l==1 | combined_data$r_l==2),] 
 
+### plot summary data with x = event rates ###
 ggplot(sub_combined_data, aes(r_d, rf, color=factor(coal_unit), linetype=model, shape=factor(r_l))) +
   geom_errorbar(
     aes(ymin = rf-std_rf, ymax = rf+std_rf, color = factor(coal_unit)), width = 0.3) + 
@@ -155,8 +156,7 @@ ggplot(sub_combined_data, aes(r_d, n_quartets, color=factor(coal_unit), linetype
          linetype=guide_legend(title="models")) + 
   theme_minimal()
 
-#######################################################################################
-
+### plot summary data with x = number of duplications ###
 basic_summary_dir = paste(dir, 'summary_data.csv', sep='')
 basic_summary_df = read_csv(basic_summary_dir)
 

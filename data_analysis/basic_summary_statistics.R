@@ -4,8 +4,9 @@ library(ggplot2)
 # Set the working directory to 'data_analysis',
 # or define dir as the full directory to 'data_analysis', 
 # such as dir = '~/desktop/simulation_script/data_analysis/'
-dir = './'
 
+### load simphy data ###
+dir = './'
 files_dir = paste(dir, 'simphy_summary/', sep='')
 files = list.files(files_dir)
 
@@ -54,7 +55,7 @@ for (i in 1:length(files)){
 simphy_data = summary_data
 simphy_data$model = 'DLCoal'
 
-#######################################################################################
+### load mlmsc data ###
 files_dir = paste(dir, 'mlmsc_summary/', sep='')
 files = list.files(files_dir)
 
@@ -103,8 +104,7 @@ for (i in 1:length(files)){
 mlmsc_data = summary_data
 mlmsc_data$model = 'MLMSC-II'
 
-#######################################################################################
-
+### combine/select data ###
 combined_data = rbind(mlmsc_data, simphy_data)
 
 summary_dir = paste(dir, 'summary_data.csv', sep='')
@@ -119,6 +119,8 @@ sub_combined_data = combined_data[which(combined_data$r_l==1),]
 # only look at the cases where rd=0.5*rl, rd=rl, rd=2*rl
 sub_combined_data = combined_data[which(combined_data$r_l==0.5 | combined_data$r_l==1 | combined_data$r_l==2),] 
 
+
+### plot summary data with x = event rates ###
 ggplot(sub_combined_data, aes(r_d, n_dups, shape=factor(coal_unit), linetype=model, color=factor(r_l))) +
   geom_errorbar(
     aes(ymin = n_dups-std_dups, ymax = n_dups+std_dups, color = factor(r_l)), width = 0.3) + 
@@ -158,8 +160,7 @@ ggplot(sub_combined_data, aes(r_d, n_species, shape=factor(coal_unit), linetype=
          linetype=guide_legend(title="models")) + 
   theme_minimal()
 
-#######################################################################################
-
+### plot density ###
 simphy_D4L4C9 = read_csv(paste(dir, 'simphy_summary/summary_D4L4C9.txt', sep=''))
 mlmsc_D4L4C9 = read_csv(paste(dir, 'mlmsc_summary/summary_D4L4C9.txt', sep=''))
 
