@@ -2,6 +2,8 @@
  
 We provide the scripts to reproduce the simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. Here we only give the example of the species tree of 16 fungal genomes i.e., the result presented in the main text of the paper. Minor changes to the python scripts is required to reproduce the examples of primate species tree, or the artificial species tree with extremely short internal branches. 
 
+It is highly recommended to open these R scripts in Rstudio and follow the comment to run each sections on users demand.
+
 ## basic_summary_statistics.R
 Read summary.txt and plot basic summary statistics including 
 * n_d: number of surviving duplications.
