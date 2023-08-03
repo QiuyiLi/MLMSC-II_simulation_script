@@ -5,12 +5,12 @@ We provide the scripts to reproduce the simulation results of the paper **The ef
 ## mlmsc_bin
 This directory is for simulating gene trees using MLMSC-II, and performing species tree inference (by ASTRAL and ASTRAL-Pro) on the simulated gene tree.
 
-Output gene trees are stored in mlmsc_bin/output:
+Simulated gene trees are stored in **mlmsc_bin/output**:
 * **gene_tree.newick**: a multi-labelled gene tree consisting of all homologous genes
 * **random_tree.newick**: a single-labelled gene tree in which only one gene is randomly selected for each descendant species 
 * **summary.txt**: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species)
 
-Output species tree inference results are stored in mlmsc_bin/astral_summary_fungi:
+Species tree inference results are stored in **mlmsc_bin/astral_summary_fungi**:
 * **mlmsc_random.txt**: ASTRAL results
 * **mlmsc_gene.txt**: ASTRAL-Pro results
 
@@ -19,12 +19,12 @@ For more information, please refer to **mlmsc_bin/README.md**.
 ## simphy_bin
 This directory is for simulating gene trees using SimPhy, and performing species tree inference (by ASTRAL and ASTRAL-Pro) on the simulated gene tree.
 
-Output gene trees are stored in simphy_bin/output:
+Simulated gene trees are stored in **simphy_bin/output**:
 * **gene_tree.newick**: a multi-labelled gene tree consisting of all homologous genes
 * **random_tree.newick**: a single-labelled gene tree in which only one gene is randomly selected for each descendant species 
 * **summary.txt**: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species)
 
-Output species tree inference results are stored in simphy_bin/astral_summary_fungi:
+Species tree inference results are stored in **simphy_bin/astral_summary_fungi**:
 * **simphy_random.txt**: ASTRAL results
 * **simphy_gene.txt**: ASTRAL-Pro results
 
