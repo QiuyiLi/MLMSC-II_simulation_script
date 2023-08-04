@@ -1,16 +1,21 @@
 # MLMSC-II_simulation_script
  
-We provide the scripts to reproduce the simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. Here we only give the example of the species tree of 16 fungal genomes i.e., the result presented in the main text of the paper. Minor changes to the python scripts is required to reproduce the examples of primate species tree, or the artificial species tree with extremely short internal branches. 
+We provide here the scripts to reproduce the simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. 
+
+
+To install ASTER/ASTRAL-Pro, do  git clone https://github.com/chaoszhang/ASTER.git and follow the instructions.
+The scripts expect the ASTRAL/ASTRAL-Pro binary to be in ./ASTER/bin/astral-pro
+
 
 ## mlmsc_bin
-This directory is for simulating gene trees using MLMSC-II, and performing species tree inference (by ASTRAL and ASTRAL-Pro) on the simulated gene tree.
+This directory contains all the scripts for simulating gene trees using MLMSC-II and SimPhy, and performing species tree inference (by ASTRAL and ASTRAL-Pro) on the simulated gene trees.
 
-Simulated gene trees are stored in **mlmsc_bin/output**:
-* **gene_tree.newick**: a multi-labelled gene tree consisting of all homologous genes
-* **random_tree.newick**: a single-labelled gene tree in which only one gene is randomly selected for each descendant species 
+When simulating trees, gene trees are stored in **mlmsc_bin/output**:
+* **gene_tree.newick**: a list of multi-labelled gene trees, each containing of all simulated homologous genes
+* **random_tree.newick**: a list of single-labelled gene trees, each containing only one --randomly-chosen-- gene per species 
 * **summary.txt**: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species)
 
-Species tree inference results are stored in **mlmsc_bin/astral_summary_fungi**:
+When inferring specie trees, species tree inference results are stored in **mlmsc_bin/astral_summary_fungi**:
 * **mlmsc_random.txt**: ASTRAL results
 * **mlmsc_gene.txt**: ASTRAL-Pro results
 
