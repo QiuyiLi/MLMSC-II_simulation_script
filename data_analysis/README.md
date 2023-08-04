@@ -23,4 +23,4 @@ Plot summary statistics of ASTRAL output.
 * cp: Proportion of quartets which are consistent with the species tree.
 
 ## colless_index.R
-Plot Colless index.
+Compute and plot Colless index.
