@@ -137,7 +137,7 @@ ggplot(sub_combined_data, aes(r_d, cp, color=factor(coal_unit), linetype=model, 
   geom_path() + 
   scale_linetype_manual(values=c("dashed", "solid")) +
   xlab('Duplication rate') +
-  ylab('RF distance') +
+  ylab('Correct proportion') +
   guides(color=guide_legend(title="2N (10^7)"), 
          shape=guide_legend(title="r_l/r_d"),
          linetype=guide_legend(title="models")) + 
@@ -150,7 +150,7 @@ ggplot(sub_combined_data, aes(r_d, n_quartets, color=factor(coal_unit), linetype
   geom_path() + 
   scale_linetype_manual(values=c("dashed", "solid")) +
   xlab('Duplication rate') +
-  ylab('RF distance') +
+  ylab('Number of quartets') +
   guides(color=guide_legend(title="2N (10^7)"), 
          shape=guide_legend(title="r_l/r_d"),
          linetype=guide_legend(title="models")) + 

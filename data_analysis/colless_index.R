@@ -7,11 +7,12 @@ library(treeCentrality)
 
 ### load simphy trees ###
 dir = './'
+
 files_dir = paste(dir, 'simphy_tree/gene/', sep='')
 files = list.files(files_dir)
 
 summary_data = data.frame(colless=numeric(), std_colless=numeric(),
-                          r_d=numeric(), coal_unit=numeric())
+                          r_d=numeric(), r_l=numeric(), coal_unit=numeric())
 
 for (i in 1:length(files)){
   file_dir = paste(files_dir, files[i], sep='')
@@ -38,9 +39,19 @@ for (i in 1:length(files)){
   coal_unit = strsplit(paras, 'C')[[1]][2]
   coal_unit = as.numeric(coal_unit)
   
-  new_data = data.frame(colless=mean(colless_index), std_colless=sd(colless_index)/sqrt(length(colless_index)),
-                        r_d=r_d, coal_unit=coal_unit)
-  summary_data = rbind(summary_data, new_data)
+  if (r_d != 0){
+    r_l = r_l/r_d
+    new_data = data.frame(colless=mean(colless_index), std_colless=sd(colless_index)/sqrt(length(colless_index)),
+                          r_d=r_d, r_l=r_l, coal_unit=coal_unit)
+    summary_data = rbind(summary_data, new_data)
+  }else{
+    r_ls = c(0.4, 0.5, 0.7, 0.9, 1, 1.1, 1.3, 1.5, 2.0)
+    for (k in 1:length(r_ls)){
+      new_data = data.frame(colless=mean(colless_index), std_colless=sd(colless_index)/sqrt(length(colless_index)),
+                            r_d=r_d, r_l=r_ls[k], coal_unit=coal_unit)
+      summary_data = rbind(summary_data, new_data)
+    }
+  }
 }
 
 simphy_gene = summary_data
@@ -51,7 +62,7 @@ files_dir = paste(dir, 'mlmsc_tree/gene/', sep='')
 files = list.files(files_dir)
 
 summary_data = data.frame(colless=numeric(), std_colless=numeric(),
-                          r_d=numeric(), coal_unit=numeric())
+                          r_d=numeric(), r_l=numeric(), coal_unit=numeric())
 
 for (i in 1:length(files)){
   file_dir = paste(files_dir, files[i], sep='')
@@ -78,9 +89,19 @@ for (i in 1:length(files)){
   coal_unit = strsplit(paras, 'C')[[1]][2]
   coal_unit = as.numeric(coal_unit)
   
-  new_data = data.frame(colless=mean(colless_index), std_colless=sd(colless_index)/sqrt(length(colless_index)),
-                        r_d=r_d, coal_unit=coal_unit)
-  summary_data = rbind(summary_data, new_data)
+  if (r_d != 0){
+    r_l = r_l/r_d
+    new_data = data.frame(colless=mean(colless_index), std_colless=sd(colless_index)/sqrt(length(colless_index)),
+                          r_d=r_d, r_l=r_l, coal_unit=coal_unit)
+    summary_data = rbind(summary_data, new_data)
+  }else{
+    r_ls = c(0.4, 0.5, 0.7, 0.9, 1, 1.1, 1.3, 1.5, 2.0)
+    for (k in 1:length(r_ls)){
+      new_data = data.frame(colless=mean(colless_index), std_colless=sd(colless_index)/sqrt(length(colless_index)),
+                            r_d=r_d, r_l=r_ls[k], coal_unit=coal_unit)
+      summary_data = rbind(summary_data, new_data)
+    }
+  }
 }
 
 mlmsc_gene = summary_data
@@ -88,13 +109,21 @@ mlmsc_gene$model = 'MLMSC-II'
 
 ### combine/select data ###
 combined_data = rbind(mlmsc_gene, simphy_gene)
+
 summary_dir = paste(dir, 'summary_colless_gene.csv', sep='')
 
 write.csv(combined_data, summary_dir, row.names = FALSE)
 combined_data = read_csv(summary_dir)
 
+# all data which looks messy
+sub_combined_data = combined_data 
+# only look at the cases where rd=rl
+sub_combined_data = combined_data[which(combined_data$r_l==1),] 
+# only look at the cases where rd=0.5*rl, rd=rl, rd=2*rl
+sub_combined_data = combined_data[which(combined_data$r_l==0.5 | combined_data$r_l==1 | combined_data$r_l==2),] 
+
 ### plot summary data with x = event rates ###
-ggplot(combined_data, aes(r_d, colless, color=factor(coal_unit), linetype=model)) +
+ggplot(sub_combined_data, aes(r_d, colless, color=factor(coal_unit), linetype=model, shape=factor(r_l))) +
   geom_errorbar(
     aes(ymin = colless-std_colless, ymax = colless+std_colless, color = factor(coal_unit)), width = 0.3) + 
   geom_point() +
@@ -103,8 +132,10 @@ ggplot(combined_data, aes(r_d, colless, color=factor(coal_unit), linetype=model)
   xlab('Duplication rate') +
   ylab('Colless index') +
   guides(color=guide_legend(title="2N (10^7)"), 
+         shape=guide_legend(title="r_l/r_d"),
          linetype=guide_legend(title="models")) + 
   theme_minimal()
+
 
 ### plot summary data with x = number of duplications ###
 basic_summary_dir = paste(dir, 'summary_data.csv', sep='')
@@ -112,12 +143,18 @@ basic_summary_df = read_csv(basic_summary_dir)
 
 colless_summary_dir = paste(dir, 'summary_colless_gene.csv', sep='')
 colless_summary_df = read_csv(colless_summary_dir)
-colless_summary_df$r_l = 1
 
 combined_summary_df = merge(x=colless_summary_df, y=basic_summary_df, 
                             by=c("r_d","r_l","coal_unit","model"))
 
-ggplot(combined_summary_df, aes(n_dups, colless, color=factor(coal_unit), linetype=model)) +
+# all data which looks messy
+sub_combined_summary = combined_summary_df 
+# only look at the cases where rd=rl
+sub_combined_summary = combined_summary_df[which(combined_summary_df$r_l==1),] 
+# only look at the cases where rd=0.5*rl, rd=rl, rd=2*rl
+sub_combined_summary = combined_summary_df[which(combined_summary_df$r_l==0.5 | combined_summary_df$r_l==1 | combined_summary_df$r_l==2),] 
+
+ggplot(sub_combined_summary, aes(n_dups, colless, color=factor(coal_unit), linetype=model, shape=factor(r_l))) +
   geom_errorbar(
     aes(ymin = colless-std_colless, ymax = colless+std_colless, color = factor(coal_unit)), width = 0.3) + 
   geom_errorbar(
@@ -126,10 +163,12 @@ ggplot(combined_summary_df, aes(n_dups, colless, color=factor(coal_unit), linety
   geom_path() + 
   scale_linetype_manual(values=c("dashed", "solid")) +
   xlab('Number of duplications') +
-  ylab('RF distance') +
+  ylab('Colless index') +
   guides(color=guide_legend(title="2N (10^7)"), 
+         shape=guide_legend(title="r_l/r_d"),
          linetype=guide_legend(title="models")) + 
   theme_minimal()
+
 
 ### plot density ###
 simphy_D4L4C9 = readLines(paste(dir, 'simphy_tree/gene/gene_tree_D4L4C9.newick', sep=''), n=1000)
