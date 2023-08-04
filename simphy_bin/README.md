@@ -1,51 +1,38 @@
-# Simphy simulation
+# SimPhy simulation
 
-We provide the scripts to reproduce the simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. Here we only give the example of the species tree of 16 fungal genomes i.e., the result presented in the main text of the paper. Minor changes to the python scripts is required to reproduce the examples of primate species tree, or the artificial species tree with extremely short internal branches. 
+We provide the scripts to reproduce the SimPhy simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. 
 
-## process_simphy_fungi.py
-This script processes the origial output of Simphy and makes the output format consistent with the output of MLMSC-II. 
+To install SimPhy, do git clone https://github.com/adamallo/SimPhy and follow the instructions, or download the binay file here https://github.com/adamallo/SimPhy/releases/download/v1.0.2/SimPhy_1.0.2.tar.gz
+The scripts expect the SimPhy binary to be in ./SimPhy/bin/simphy
 
-* gene_tree.newick: a multi-labelled gene tree consisting of all homologous genes.
-* random_tree.newick: a single-labelled gene tree in which only one gene is randomly selected for each descendant species.
-* summary.txt: summary statistics including the number of surviving duplications (n_d), number of genes (n_genes), and number of species (n_species).
+Note that the branch lengths of the species tree used for the mlmsc simulations have to be  multiplied by e7 to obtain the species tree for the SimPhy simulations.
 
-The script has been integrated to **script_simphy_fungi.py**, and do not need to be executed on its own. 
-
-## script_simphy_fungi.py
-This script takes input the number of gene trees, duplication rate, loss rate, the effective population size and produces the output of Simphy. To execute
+## script_simphy.py
+This script takes as input the species tree, the number of gene trees, the duplication rate, the loss rate, the effective population size multiplier, and produces a SimPhy simulation. To execute
 ```
-python3 script_simphy_fungi.py -n N100D2L2C9
-```
-or
-```
-python3 script_simphy_fungi.py --name N100D2L2C9
-```
-the arguments 
-* N100: simulate 100 gene trees.
-* D2: duplication rate = 2e-3 per coalescent unit.
-* L2: loss rate = 2e-3 per coalescent unit.
-* C9: the effective population size = 9e7.
+python3 script_simphy.py -t <species tree file> -n <number of gene trees> -d <duplication rate> -l <loss rate> -c <effective population size multiplier> 
 
-## sbatch_simphy_fungi.py
-This script is for submitting jobs on clusters and lists all sets of parameters used in our simuation.
-
-## script_astral_simphy_fungi.py
-This script takes input the duplication rate, loss rate, the effective population size and produces the output of ASTRAL/ASTRAL-Pro. To execute
 ```
-python3 script_astral_simphy_fungi.py -n simphy_D2L2C9_G20_gene
-```
-or
-```
-python3 script_astral_simphy_fungi.py --name simphy_D2L2C9_G20_gene
-```
-the arguments 
-* D2: duplication rate = 2e-3 per coalescent unit.
-* L2: loss rate = 2e-3 per coalescent unit.
-* C9: the effective population size = 9e7.
-* G20: species tree inference using 20 gene trees.
-* gene/random: use gene/random trees as input (ASTRAL-Pro/ASTRAL).
+Note that 
 
-## sbatch_astral_simphy_fungi.py
-This script is for submitting jobs on clusters and lists all sets of parameters used in our simuation. 
+* -d D will corresponds to a duplication rate of De-3 per coalescent unit.
+* -l L will corresponds to a loss rate of Le-3 per coalescent unit.
+* -c C will multiply the effective population size  of all branches by C.
 
+## sbatch_simphy.py
+This script lists all sets of parameters used to generate the SimPhy gene trees in our simulations.
 
+## script_astral_simphy.py
+
+This script takes as input the species tree, the number of SimPhy gene trees to use in the inference, the duplication rate, the loss rate, the effective population size multiplier and the inference method, and produces the output of ASTRAL/ASTRAL-Pro. 
+To execute
+```
+python3 script_astral_simphy.py -t <species tree file> -n <number of gene trees> -r <number of resampling (default 5000)> -d <duplication rate> -l <loss rate> -c <effective population size multiplier> -i <inference method (ASTRAL/ASTRAL-Pro)>
+
+```
+
+Note that this script will look for the corresponding trees simulated via the script_simphy.py script in the directory ./output/ and will randomly select <number of gene trees>  gene trees to infer a species tree with ASTRAL or ASTRAL-Pro, and will do so for <number of resampling> times.
+
+## sbatch_astral_simphy.py
+
+This script lists all sets of parameters used to reconstruct species trees from the SimPhy simulations.

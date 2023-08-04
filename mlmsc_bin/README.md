@@ -1,41 +1,34 @@
 # MLMSC-II simulation
 
-We provide the scripts to reproduce the simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. Here we only give the example of the species tree of 16 fungal genomes i.e., the result presented in the main text of the paper. Minor changes to the python scripts is required to reproduce the examples of primate species tree, or the artificial species tree with extremely short internal branches. 
+We provide the scripts to reproduce the MLMSC-II simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. 
 
-## script_mlmsc_fungi.py
-This script takes input the number of gene trees, duplication rate, loss rate, the effective population size and produces the output of MLMSC-II. To execute
-```
-python3 script_mlmsc_fungi.py -n N100D2L2C9
-```
-or
-```
-python3 script_mlmsc_fungi.py --name N100D2L2C9
-```
-the arguments 
-* N100: simulate 100 gene trees.
-* D2: duplication rate = 2e-3 per coalescent unit.
-* L2: loss rate = 2e-3 per coalescent unit.
-* C9: the effective population size = 9e7.
 
-## sbatch_mlmsc_fungi.py
-This script is for submitting jobs on clusters and lists all sets of parameters used in our simuation.
+## script_mlmsc.py
+This script takes as input the species tree, the number of gene trees, the duplication rate, the loss rate, the effective population size multiplier, and produces a MLMSC-II simulation. To execute
+```
+python3 script_mlmsc.py -t <species tree file> -n <number of gene trees> -d <duplication rate> -l <loss rate> -c <effective population size multiplier> 
 
-## script_astral_mlmsc_fungi.py
-This script takes input the duplication rate, loss rate, the effective population size and produces the output of ASTRAL/ASTRAL-Pro. To execute
 ```
-python3 script_astral_mlmsc_fungi.py -n mlmsc_D2L2C9_G20_gene
-```
-or
-```
-python3 script_astral_mlmsc_fungi.py --name mlmsc_D2L2C9_G20_gene
-```
-the arguments 
-* D2: duplication rate = 2e-3 per coalescent unit.
-* L2: loss rate = 2e-3 per coalescent unit.
-* C9: the effective population size = 9e7.
-* G20: species tree inference using 20 gene trees.
-* gene/random: use gene/random trees as input (ASTRAL-Pro/ASTRAL).
+Note that 
 
-## sbatch_astral_mlmsc_fungi.py
-This script is for submitting jobs on clusters and lists all sets of parameters used in our simuation. 
+* -d D will corresponds to a duplication rate of De-3 per coalescent unit.
+* -l L will corresponds to a loss rate of Le-3 per coalescent unit.
+* -c C will multiply the effective population size  of all branches by C.
 
+## sbatch_mlmsc.py
+This script lists all sets of parameters used to generate the MLMSC-II gene trees in our simulations.
+
+## script_astral_mlmsc.py
+
+This script takes as input the species tree, the number of MLMSC-II gene trees to use in the inference, the duplication rate, the loss rate, the effective population size multiplier and the inference method, and produces the output of ASTRAL/ASTRAL-Pro. 
+To execute
+```
+python3 script_astral_mlmsc.py -t <species tree file> -n <number of gene trees> -r <number of resampling (default 5000)> -d <duplication rate> -l <loss rate> -c <effective population size multiplier> -i <inference method (ASTRAL/ASTRAL-Pro)>
+
+```
+
+Note that this script will look for the corresponding trees simulated via the script_mlmsc.py script in the directory ./output/ and will randomly select <number of gene trees>  gene trees to infer a species tree with ASTRAL or ASTRAL-Pro, and will do so for <number of resampling> times.
+
+## sbatch_astral_mlmsc.py
+
+This script lists all sets of parameters used to reconstruct species trees from the MLMSC-II simulations.
