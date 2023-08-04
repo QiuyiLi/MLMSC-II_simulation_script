@@ -5,7 +5,7 @@ We provide the scripts to reproduce the SimPhy simulation results of the paper *
 To install SimPhy, do git clone https://github.com/adamallo/SimPhy and follow the instructions, or download the binay file here https://github.com/adamallo/SimPhy/releases/download/v1.0.2/SimPhy_1.0.2.tar.gz
 The scripts expect the SimPhy binary to be in ./SimPhy/bin/simphy
 
-Note that the branch lengths of the species tree used for the mlmsc simulations have to be  multiplied by e7 to obtain the species tree for the SimPhy simulations.
+Note that the branch lengths of the species tree used for the mlmsc simulations have to be  multiplied by 1e7 to obtain the species tree for the SimPhy simulations.
 
 ## script_simphy.py
 This script takes as input the species tree, the number of gene trees, the duplication rate, the loss rate, the effective population size multiplier, and produces a SimPhy simulation. To execute

@@ -1,3 +1,4 @@
 scikit-bio
 numpy
 statistics
+ete3

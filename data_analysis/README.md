@@ -5,7 +5,7 @@ We provide the scripts to reproduce the simulation results of the paper **The ef
 It is highly recommended to open these R scripts in Rstudio and follow the comment to run each sections on users demand.
 
 ## basic_summary_statistics.R
-Read summary.txt and plot basic summary statistics including 
+Plot basic summary statistics including 
 * n_d: number of surviving duplications.
 * n_genes: number of genes i.e., tips of genes tree.
 * n_species: number of species.
@@ -23,4 +23,4 @@ Plot summary statistics of ASTRAL output.
 * cp: Proportion of quartets which are consistent with the species tree.
 
 ## colless_index.R
-Plot Colless index.
+Compute and plot Colless index.
