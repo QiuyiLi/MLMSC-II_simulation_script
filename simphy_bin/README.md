@@ -2,10 +2,25 @@
 
 We provide the scripts to reproduce the SimPhy simulation results of the paper **The effect of copy number hemiplasy on gene family evolution**. 
 
-To install SimPhy, do git clone https://github.com/adamallo/SimPhy and follow the instructions, or download the binay file here https://github.com/adamallo/SimPhy/releases/download/v1.0.2/SimPhy_1.0.2.tar.gz
-The scripts expect the SimPhy binary to be in ./SimPhy/bin/simphy
+To install SimPhy, do 
+```
+git clone https://github.com/adamallo/SimPhy 
+```
+and follow the instructions, or download the binay file [here](https://github.com/adamallo/SimPhy/releases/download/v1.0.2/SimPhy_1.0.2.tar.gz).
+The scripts expect the SimPhy binary to be in **./SimPhy/bin/simphy**
 
-Note that the branch lengths of the species tree used for the mlmsc simulations have to be  multiplied by 1e7 to obtain the species tree for the SimPhy simulations.
+Note that the branch lengths of the species tree used for the mlmsc simulations have to be multiplied by 1e7 to obtain the species tree for the SimPhy simulations.
+
+In its original form, SimPhy does not allow duplication rate (r_d) to be less than loss rate (r_l). Fortunately, the source code can be easily modified to accept r_d > r_l: go to **SimPhy/src/main.c**; comment the following lines (3680~3685)
+```
+if((get_sampling(sb_rate)<get_sampling(sd_rate))&&(get_sampling(bds_leaves)>0))
+{
+    fprintf(stderr,"\n\tERROR!!! The BDSA algorithm of the conditioned birth death simulation process of the species tree does not allow birth rates less than the death rate\n");
+    
+    is_error=1;
+}
+```
+Then follow the instructions to recompile SimPhy, the recomplied SimPhy binary is expected to be in **./SimPhy/bin/simphy**
 
 ## script_simphy.py
 This script takes as input the species tree, the number of gene trees, the duplication rate, the loss rate, the effective population size multiplier, and produces a SimPhy simulation. To execute
