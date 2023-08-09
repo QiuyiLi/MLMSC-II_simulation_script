@@ -11,7 +11,9 @@ The scripts expect the SimPhy binary to be in **./SimPhy/bin/simphy**
 
 Note that the branch lengths of the species tree used for the mlmsc simulations have to be multiplied by 1e7 to obtain the species tree for the SimPhy simulations.
 
-In its original form, SimPhy does not allow duplication rate (r_d) to be less than loss rate (r_l). Fortunately, the source code can be easily modified to accept r_d > r_l: go to **SimPhy/src/main.c**; comment the following lines (3680~3685)
+In its original form, SimPhy does not allow duplication rate (r_d) to be less than loss rate (r_l). Fortunately, the source code can be easily modified to accept r_d > r_l: 
+* open **SimPhy/src/main.c**;
+* comment the following lines (3680~3685)
 ```
 if((get_sampling(sb_rate)<get_sampling(sd_rate))&&(get_sampling(bds_leaves)>0))
 {
