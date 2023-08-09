@@ -4,6 +4,23 @@ We provide the scripts to reproduce the simulation results of the paper **The ef
 
 It is highly recommended to open these R scripts in Rstudio and follow the comment to run each sections on users demand.
 
+## Dependencies 
+The R scripts require the following packages
+```
+readr
+ape
+ggplot2
+treeCentrality
+```
+To install, do
+```
+install.packages("readr")
+install.packages("ape")
+install.packages("ggplot2")
+install.packages("remotes")
+remotes::install_github("Leonardini/treeCentrality")
+```
+
 ## basic_summary_statistics.R
 Plot basic summary statistics including 
 * n_d: number of surviving duplications.
