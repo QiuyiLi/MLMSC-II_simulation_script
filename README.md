@@ -4,7 +4,8 @@ We provide here the scripts to reproduce the simulation results of the paper **T
 
 
 To install ASTER/ASTRAL-Pro, do 
-```git clone https://github.com/chaoszhang/ASTER.git
+```
+git clone https://github.com/chaoszhang/ASTER.git
 ```
 and follow the instructions. The scripts expect the ASTRAL/ASTRAL-Pro binary to be in **./ASTER/bin/astral-pro**
 
